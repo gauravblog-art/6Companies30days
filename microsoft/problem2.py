@@ -1,37 +1,34 @@
-class Solution:
-    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
-
-        if k>n:
-            return []
-        if n>45:
-            return []
-
-
-        ans=[]
-
-        lst=range(1,10)
-     
+# combinationSum3
+def combinationSum3(k, n):
+    if k>n:
+        return []
+    if n>45:
+        return []
 
 
-        def solver(ind, output, target):
+    ans=[]
 
-            if len(output)==k and target==0:
+    lst=range(1,10)
+    def solver(ind, output, target):
 
-                ans.append(output[:])
-                return 
-            
-            for i in range(ind, len(lst)):
+        if len(output)==k and target==0:
 
-                if target < lst[i]:
-                    break
+            ans.append(output[:])
+            return 
+        
+        for i in range(ind, len(lst)):
 
-                output.append(lst[i])
-                solver(i+1, output, target-lst[i])
-                output.pop()
-        solver(0, [], n)
+            if target < lst[i]:
+                break
 
-        return ans
+            output.append(lst[i])
+            solver(i+1, output, target-lst[i])
+            output.pop()
+    solver(0, [], n)
 
-            
+    return ans
 
+k = 3 
+n = 7
+print(combinationSum3(k,n))
        
